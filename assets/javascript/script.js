@@ -10,7 +10,7 @@ $(document).ready(function () {
   var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?id=goffstown&appid=${APIKey}`;
 
   // date using moment.js
-  var currentDate = moment().format("L");
+  var currentDate = moment().format("l");
 
   // create a function that gets the current weather (Current Weather Data Call)
   $.get(weatherURL).then(function (response) {
@@ -18,8 +18,8 @@ $(document).ready(function () {
     console.log(response);
 
     // Transfer content to HTML
-    $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-    $(".wind").text("Wind Speed: " + response.wind.speed);
+    $(".city").html("<h2>" + response.name + " " + currentDate);
+    $(".temp").text("Temperature: " + response.main.temp);
     $(".humidity").text("Humidity: " + response.main.humidity);
 
     // generate current city and date elements

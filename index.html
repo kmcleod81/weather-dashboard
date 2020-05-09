@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
-
   <!-- jumbotron -->
   <body>
     <div class="jumbotron bg-dark text-white">
@@ -28,44 +27,39 @@
       </div>
     </div>
 
-<!-- container holding input -->
-<section>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-3 bg-light float left">
-        
+    <!-- container holding input -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3 bg-light float left">
+            <div class="row">
+              <div class="input-group md-form form-sm form-1">
+                <input
+                  class="form-control"
+                  id="location"
+                  type="text"
+                  placeholder="Enter Location"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" id="citySearch" type="button">
+                    <i class="fa fa-search text-white" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
-            <div class="input-group md-form form-sm form-1">
-          <input
-            class="form-control"
-            id="location"
-            type="text"
-            placeholder="Enter Location"
-          />
-          <div class="input-group-append">
-            <button class="btn btn-primary" id="citySearch" type="button"
-            >              <i class="fa fa-search text-white" aria-hidden="true"></i>
-            </button>
+            <div class="col=md-12"></div>
+            <div class="col-sm-6" id="searchHistory">
+              <div class="city"></div>
+              <div class="wind"></div>
+              <div class="humidity"></div>
+              <div class="temp"></div>
             </div>
           </div>
         </div>
       </div>
-
-        <div class="col-sm-6">
-        <div class="city"></div>
-        <div class="wind"></div>
-        <div class="humidity"></div>
-        <div class="temp"></div>
-    </div>
-      </div>
-    </div>
-    </div>
-
- 
-     
-  </div>
-</section>
-   
+    </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
     <script
@@ -84,9 +78,10 @@
       crossorigin="anonymous"
     ></script>
     <script
-  src="https://code.jquery.com/jquery-3.5.0.min.js"
-  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
-  crossorigin="anonymous"></script>
+      src="https://code.jquery.com/jquery-3.5.0.min.js"
+      integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+      crossorigin="anonymous"
+    ></script>
     <script src="assets/javascript/script.js"></script>
   </body>
 </html>
