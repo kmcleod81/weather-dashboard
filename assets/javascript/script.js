@@ -1,7 +1,6 @@
 // an input to allow the user to search for the city
 
 // grab the users input and store it in a variable (userSearch)
-// create a function that gets the current weather (Current Weather Data Call)
 
 $(document).ready(function () {
   var APIKey = "6b7b386acbe114ac13fa0de66207a370";
@@ -13,11 +12,21 @@ $(document).ready(function () {
   // date using moment.js
   var currentDate = moment().format("L");
 
+  // create a function that gets the current weather (Current Weather Data Call)
   $.get(weatherURL).then(function (response) {
-    // Log the queryURL
-    console.log(weatherURL);
-    // Log the resulting object
+    // console.log(weatherURL);
     console.log(response);
+
+    // Transfer content to HTML
+    $(".city").html("<h1>" + response.name + " Weather Details</h1>");
+    $(".wind").text("Wind Speed: " + response.wind.speed);
+    $(".humidity").text("Humidity: " + response.main.humidity);
+
+    // generate current city and date elements
+    var currentCity = response.name;
+    var currentCityEl = $("<span>", {
+      style: "font-size: 25px",
+    }).text(`${currentCity} (${currentDate}) `);
   });
 });
 

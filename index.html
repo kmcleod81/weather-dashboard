@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
+    <!-- bootstrap -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <!-- font awesome -->
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
@@ -18,35 +20,52 @@
   </head>
 
 
-
+  <!-- jumbotron -->
   <body>
     <div class="jumbotron bg-dark text-white">
       <div class="container">
-        <h1 class="display-5 text-center">Weather Dashboard</h1>
+        <h1 class="display-5">Weather Dashboard</h1>
       </div>
     </div>
 
+<!-- container holding input -->
+<section>
     <div class="container">
-      <div class="card" style="width: 18rem;">
-        <div class="input-group md-form form-sm form-1 pl-0">
-          <form id="location-form"></form>
+      <div class="row">
+        <div class="col-sm-3 bg-light float left">
+        
+          <div class="row">
+            <div class="input-group md-form form-sm form-1">
           <input
-            class="form-control my-0 py-1"
+            class="form-control"
             id="location"
             type="text"
             placeholder="Enter Location"
           />
-
           <div class="input-group-append">
-            <button class="input-group-text"
-              ><i class="fa fa-search text-white" aria-hidden="true"></i
-            ></button>
+            <button class="btn btn-primary" id="citySearch" type="button"
+            >              <i class="fa fa-search text-white" aria-hidden="true"></i>
+            </button>
             </div>
-          </form>
           </div>
         </div>
       </div>
+
+        <div class="col-sm-6">
+        <div class="city"></div>
+        <div class="wind"></div>
+        <div class="humidity"></div>
+        <div class="temp"></div>
     </div>
+      </div>
+    </div>
+    </div>
+
+ 
+     
+  </div>
+</section>
+   
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
     <script
