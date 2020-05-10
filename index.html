@@ -1,88 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Dashboard</title>
-    <!-- bootstrap -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <!-- font awesome -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
 
-  <!-- jumbotron -->
-  <body>
-    <div class="jumbotron bg-dark text-white">
-      <div class="container">
-        <h1 class="display-5">Weather Dashboard</h1>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<!-- jumbotron -->
+
+<body>
+  <div class="jumbotron bg-dark text-white">
+    <div class="container">
+      <h1 class="display-5">Weather Dashboard</h1>
     </div>
+  </div>
 
-    <!-- container holding input -->
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3 bg-light float left">
-            <div class="row">
-              <div class="input-group md-form form-sm form-1">
-                <input
-                  class="form-control"
-                  id="location"
-                  type="text"
-                  placeholder="Enter Location"
-                />
+  <!-- container holding input -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 bg-light float left">
+          <div class="row">
+            <div class="col-md-12">
+              <h5>Search for a City:</h5>
+
+              <div class="input-group mb-3 w-75">
+                <input class="form-control" id="location" type="text" placeholder="Enter Location" />
                 <div class="input-group-append">
                   <button class="btn btn-primary" id="citySearch" type="button">
-                    <i class="fa fa-search text-white" aria-hidden="true"></i>
+                    <i class="fa fa-search" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- past searches -->
           <div class="row">
             <div class="col=md-12"></div>
-            <div class="col-sm-6" id="searchHistory">
-              <div class="city"></div>
-              <div class="temp"></div>
-              <div class="humidity"></div>
-              <div class="wind"></div>
-              <div class="uvi"></div>
+            <div class="w-75 mb1" id="searchHistory">
+              <button type="button" class="btn btn-outline-secondary">
+                Secondary
+              </button>
+              <button type="button" class="btn btn-outline-secondary mt-1 w-75 text-left">
+                Gofftown
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.5.0.min.js"
-      integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
-      crossorigin="anonymous"
-    ></script>
-    <script src="assets/javascript/script.js"></script>
-  </body>
+      <!-- current city -->
+      <div class="col-md-9">
+        <div class="row bg-white">
+          <div class="col-md-9" id="currentCity">
+            <div class="city"></div>
+            <div class="temp"></div>
+            <div class="humidity"></div>
+            <div class="wind"></div>
+            <div class="uvi"></div>
+          </div>
+        </div>
+
+        <!-- 5 day -->
+        <div class="row bg-white mt-3">
+          <div class="col-md-12" id="fiveDayForecast">
+            <div class="city"></div>
+            <div class="temp"></div>
+            <div class="humidity"></div>
+            <div class="wind"></div>
+            <div class="uvi"></div>
+          </div>
+        </div>
+      </div>
+
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+  <script src="assets/javascript/script.js"></script>
+</body>
+
 </html>

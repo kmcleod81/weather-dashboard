@@ -40,7 +40,7 @@ $(document).ready(function () {
         // generate current city and date elements
         var currentCity = response.name;
         var currentCityEl = $("<span>", {
-          style: "font-size: 25px",
+          style: "font-size: 30px",
         }).text(`${currentCity} (${currentDate}) `);
       });
     });
