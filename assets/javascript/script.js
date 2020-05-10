@@ -40,27 +40,27 @@ $(document).ready(function () {
         // generate current city and date elements
         var currentCity = response.name;
         var currentCityEl = $("<span>", {
-          style: "font-size: 30px",
+          style: "font-size: 25px",
         }).text(`${currentCity} (${currentDate}) `);
       });
     });
   }
 
-  function forecastWeather(location) {
-    // 5-day forecast API
-    var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${APIKey}&units=imperial`;
+  //   function forecastWeather(location) {
+  // 5-day forecast API
+  var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${APIKey}&units=imperial`;
 
-    $.get(forecastURL).then(function (response) {
-      // $()
-      for (let index = 0; index < response.list.length; index++) {
-        const element = response.list[index];
-        if (element.dt_txt.indexOf("15:00:00") !== -1) {
-          console.log(element);
-          // populate html for 5 day weather
-        }
+  $.get(forecastURL).then(function (response) {
+    // $()
+    for (let index = 0; index < response.list.length; index++) {
+      const element = response.list[index];
+      if (element.dt_txt.indexOf("15:00:00") !== -1) {
+        console.log(element);
+        // populate html for 5 day weather
       }
-    });
-  }
+    }
+  });
+}
 });
 
 // dynamically generate current weather <div>

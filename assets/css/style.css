@@ -4,17 +4,17 @@
   margin: 0;
 }
 
+/* navigation */
+
 .jumbotron {
   padding: 5px;
   font-weight: bold;
 }
 
-#headline {
-  font-weight: bolder;
+.display-5 {
+  font-size: 35px;
+  text-align: center;
 }
 
-.input-group.md-form.form-sm.form-1 input {
-  border: 1px solid #bdbdbd;
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-}
+/* body */
+
