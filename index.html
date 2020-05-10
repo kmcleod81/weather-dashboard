@@ -13,27 +13,28 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
-<!-- jumbotron -->
+<!-- navigation -->
 
 <body>
-  <div class="jumbotron bg-dark text-white">
-    <div class="container">
-      <h1 class="display-5">Weather Dashboard</h1>
-    </div>
-  </div>
+  <header>
+    <nav class="navbar bg-dark text-white">
+      <h1>Weather Dashboard</h1>
+    </nav>
+  </header>
 
   <!-- container holding input -->
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-sm-3 bg-light float left">
+        <div class="col-md-3 bg-light float left">
           <div class="row">
             <div class="col-md-12">
               <h5>Search for a City:</h5>
-
+              <!-- userinput -->
               <div class="input-group mb-3 w-75">
                 <input class="form-control" id="location" type="text" placeholder="Enter Location" />
                 <div class="input-group-append">
+                  <!-- userInput button -->
                   <button class="btn btn-primary" id="citySearch" type="button">
                     <i class="fa fa-search" aria-hidden="true"></i>
                   </button>
@@ -55,28 +56,26 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- current city -->
-      <div class="col-md-9">
-        <div class="row bg-white">
-          <div class="col-md-9" id="currentCity">
-            <div class="city"></div>
-            <div class="temp"></div>
-            <div class="humidity"></div>
-            <div class="wind"></div>
-            <div class="uvi"></div>
+
+        <!-- current city -->
+        <div class="col-md-9">
+          <div class="row bg-white">
+            <div class="col-md-12" id="currentCity">
+              <!-- currentCity info populates here -->
+              <div class="city"></div>
+              <div class="temp"></div>
+              <div class="humidity"></div>
+              <div class="wind"></div>
+              <div class="uvi"></div>
+            </div>
           </div>
         </div>
 
         <!-- 5 day -->
         <div class="row bg-white mt-3">
           <div class="col-md-12" id="fiveDayForecast">
-            <div class="city"></div>
-            <div class="temp"></div>
-            <div class="humidity"></div>
-            <div class="wind"></div>
-            <div class="uvi"></div>
+            <!-- 5 day forecast info populates here -->
           </div>
         </div>
       </div>

@@ -6,13 +6,15 @@
 
 /* navigation */
 
-.jumbotron {
-  padding: 5px;
-  font-weight: bold;
+.navbar {
+  color: #ffffff;
+  padding: 20px;
+  margin: auto;
 }
 
-.display-5 {
-  font-size: 35px;
+.navbar > h1 {
+  font-size: 30px;
+  margin: auto;
   text-align: center;
 }
 

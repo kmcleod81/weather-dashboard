@@ -23,11 +23,22 @@ $(document).ready(function () {
     $.get(weatherURL).then(function (response) {
       // console.log(weatherURL);
       console.log(response);
+      console.log(response.name);
+      console.log(currentDate);
+
+      // generate current city and date elements 
+      var currentCity = response.name;
+      var currentCityEl = $("<div>", {
+      }).text(`${currentCity} (${currentDate}) `);
+
       // Transfer content to HTML
-      $(".city").html("<h2>" + response.name + currentDate);
+      $(".city").html("<h2>" + response.name + " (" + currentDate + ")");
+
       $(".wind").text("Wind Speed: " + response.wind.speed);
       $(".humidity").text("Humidity: " + response.main.humidity);
-      $(".temp").text("Temperature: " + response.main.temp);
+      $(".temp").text("Temperature: " + response.main.temp + "F°");
+
+
 
       // uv index API
       var uvIndexURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.coord.lat}&lon=${response.coord.lon}&
@@ -37,30 +48,26 @@ $(document).ready(function () {
         // Transfer content to HTML
         $(".uvi").text("UV Index: " + response.current.uvi);
 
-        // generate current city and date elements
-        var currentCity = response.name;
-        var currentCityEl = $("<span>", {
-          style: "font-size: 25px",
-        }).text(`${currentCity} (${currentDate}) `);
+
       });
     });
   }
 
-  //   function forecastWeather(location) {
-  // 5-day forecast API
-  var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${APIKey}&units=imperial`;
+  function forecastWeather(location) {
+    // 5-day forecast API
+    var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${APIKey}&units=imperial`;
 
-  $.get(forecastURL).then(function (response) {
-    // $()
-    for (let index = 0; index < response.list.length; index++) {
-      const element = response.list[index];
-      if (element.dt_txt.indexOf("15:00:00") !== -1) {
-        console.log(element);
-        // populate html for 5 day weather
+    $.get(forecastURL).then(function (response) {
+      // $()
+      for (let index = 0; index < response.list.length; index++) {
+        const element = response.list[index];
+        if (element.dt_txt.indexOf("15:00:00") !== -1) {
+          console.log(element);
+          // populate html for 5 day weather
+        }
       }
-    }
-  });
-}
+    });
+  }
 });
 
 // dynamically generate current weather <div>
