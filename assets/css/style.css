@@ -25,3 +25,12 @@
   border-radius: 5px;
   color: #ffffff;
 }
+
+#dayCard {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.icon {
+  border-radius: 5px;
+}

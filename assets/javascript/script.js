@@ -30,11 +30,19 @@ $(document).ready(function () {
       // generate current city and date elements 
       var currentCity = response.name;
       var currentCityEl = $("<div>", {
-      }).html(`${currentCity} (${currentDate}) `);
+      }).text(`${currentCity} (${currentDate}) `);
+
+      // Create current weather icon element 
+      var weatherIcon = response.weather[0].icon;
+      var srcIcon = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
+      var currentIconEl = $("<img>", {
+        class: "icon bg-primary",
+        src: srcIcon,
+      });
 
       // Transfer content to HTML
 
-      $(".city").html("<h3>" + response.name + " (" + currentDate + ")");
+      $(".city").html("<h3>" + response.name + " (" + currentDate + ") " + weatherIcon);
 
       var currentWindSpeed = Math.round(response.wind.speed);
       $(".wind").text("Wind Speed: " + currentWindSpeed + " MPH");
@@ -91,14 +99,15 @@ $(document).ready(function () {
     var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${APIKey}&units=imperial`;
 
     $.get(forecastURL).then(function (response) {
-      // $()
       for (let index = 0; index < response.list.length; index++) {
         const element = response.list[index];
         if (element.dt_txt.indexOf("15:00:00") !== -1) {
           console.log(element);
           // populate html for 5 day weather
         }
+
       }
+
     });
   }
 });
