@@ -20,3 +20,8 @@
 
 /* body */
 
+.uv-box {
+  padding: 5px;
+  border-radius: 5px;
+  color: #ffffff;
+}

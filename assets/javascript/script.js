@@ -4,6 +4,7 @@
 var APIKey = "6b7b386acbe114ac13fa0de66207a370";
 
 $(document).ready(function () {
+
   $("#citySearch").on("click", searchWeather);
 
   function searchWeather() {
@@ -29,14 +30,19 @@ $(document).ready(function () {
       // generate current city and date elements 
       var currentCity = response.name;
       var currentCityEl = $("<div>", {
-      }).text(`${currentCity} (${currentDate}) `);
+      }).html(`${currentCity} (${currentDate}) `);
 
       // Transfer content to HTML
-      $(".city").html("<h2>" + response.name + " (" + currentDate + ")");
 
-      $(".wind").text("Wind Speed: " + response.wind.speed);
-      $(".humidity").text("Humidity: " + response.main.humidity);
-      $(".temp").text("Temperature: " + response.main.temp + "F°");
+      $(".city").html("<h3>" + response.name + " (" + currentDate + ")");
+
+      var currentWindSpeed = Math.round(response.wind.speed);
+      $(".wind").text("Wind Speed: " + currentWindSpeed + " MPH");
+
+      $(".humidity").text("Humidity: " + response.main.humidity + "%");
+
+      var currentTemp = Math.round(response.main.temp);
+      $(".temp").text("Temperature: " + currentTemp + " F°");
 
 
 
@@ -45,10 +51,37 @@ $(document).ready(function () {
  exclude=hourly,daily&appid=${APIKey}`;
 
       $.get(uvIndexURL).then(function (response) {
-        // Transfer content to HTML
-        $(".uvi").text("UV Index: " + response.current.uvi);
+        // Transfer uv to HTML
+        /* var currentUV = Math.round(response.current.uvi);
+        $(".uvi").text("UV Index: " + currentUV + uvIndexOuter); */
 
+        // Create UV index element
+        var currentUV = response.current.uvi;
+        var uvIndexOuter = $("<p>").text("UV Index: ");
+        var uvIndexInner = $("<span>").addClass("uv-box").text(currentUV);
 
+        // add index rating in the paragraph element
+        uvIndexInner.appendTo(uvIndexOuter);
+
+        // If statement changing color of UV box based on the current uv index
+        if (currentUV >= 0 && currentUV <= 2.99) {
+          uvIndexInner.css("background-color", "green").text(currentUV);
+        }
+        if (currentUV >= 3 && currentUV <= 5.99) {
+          uvIndexInner.css("background-color", "yellow").text(currentUV);
+        }
+        if (currentUV >= 6 && currentUV <= 7.99) {
+          uvIndexInner.css("background-color", "orange").text(currentUV);
+        }
+        if (currentUV >= 8 && currentUV <= 10.99) {
+          uvIndexInner.css("background-color", "red").text(currentUV);
+        }
+        if (currentUV >= 11) {
+          uvIndexInner.css("background-color", "violet").text(currentUV);
+        }
+
+        // Append UV index to #currentCity ID
+        $("#currentCity").append(uvIndexOuter);
       });
     });
   }
