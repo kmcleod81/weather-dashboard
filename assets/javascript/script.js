@@ -26,9 +26,9 @@ $(document).ready(function () {
     // create a function that gets the current weather (Current Weather Data Call)
     $.get(weatherURL).then(function (response) {
       // console.log(weatherURL);
-      console.log(response);
-      console.log(response.name);
-      console.log(currentDate);
+      /*    console.log(response);
+         console.log(response.name);
+         console.log(currentDate); */
 
       // // dynamically generate current weather <div> ** NOT WORKKING **
 
@@ -120,12 +120,17 @@ $(document).ready(function () {
         if (element.dt_txt.indexOf("15:00:00") !== -1) {
           console.log(element);
           // populate html for 5 day weather
-          var card = $("<div>").addClass("col-md-2 card")
+          var card = $("<div>").addClass("col-md-2 card");
+
           var weatherIcon = element.weather[0].icon;
           var srcIcon = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
           var img = $("<img>").attr("src", srcIcon);
-          var temp = $("<p>").text(element.main.temp);
-          var hum = $("<p>").text(element.main.humidity);
+
+
+          var fiveDayTemp = Math.round(element.main.temp);
+
+          var temp = $("<p>").text("Temp: " + fiveDayTemp + " F°");
+          var hum = $("<p>").text("Humidity: " + element.main.humidity + "%");
 
           card.append(img, temp, hum);
           $("#fiveDayForecast").append(card);
