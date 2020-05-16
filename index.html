@@ -27,41 +27,37 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3 bg-light float left">
-          <div class="row">
-            <div class="col-md-12">
-              <h5>Search for a City:</h5>
-              <!-- userinput -->
-              <div class="input-group mb-3 w-75">
-                <input class="form-control" id="location" type="text" placeholder="Enter Location" />
-                <div class="input-group-append">
-                  <!-- userInput button -->
-                  <button class="btn btn-primary" id="citySearch" type="button">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
+
+          <h5>Search for a City:</h5>
+          <!-- userinput -->
+          <div class="input-group mb-3 w-75">
+            <input class="form-control" id="location" type="text" placeholder="Enter Location" />
+            <div class="input-group-append">
+              <!-- userInput button -->
+              <button class="btn btn-primary" id="citySearch" type="button">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
+
 
           <!-- past searches -->
-          <div class="row">
-            <div class="col=md-12"></div>
-            <div class="w-75 mb1" id="searchHistory">
-              <button type="button" class="btn btn-outline-secondary">
-                Secondary
-              </button>
-              <button type="button" class="btn btn-outline-secondary mt-1 w-75 text-left">
-                Gofftown
-              </button>
-            </div>
+
+          <div class="col-md-12" id="searchHistory">
+            <button type="button" class="btn btn-outline-secondary">
+              Secondary
+            </button>
+            <button type="button" class="btn btn-outline-secondary mt-1 w-75 text-left">
+              Gofftown
+            </button>
           </div>
+
         </div>
 
-
-        <!-- current city -->
+        <!-- current city info -->
         <div class="col-md-9">
-          <div class="row bg-white">
-            <div class="col-md-12" id="currentCity">
+          <div class="bg-white">
+            <div id="currentCity">
               <!-- currentCity info populates here -->
               <div class="city"><img class="icon bg-primary"></div>
               <div class="temp"></div>
@@ -70,20 +66,22 @@
               <div class="uvi"></div>
             </div>
           </div>
-        </div>
 
-        <!-- 5 day -->
-        <div class="row bg-white mt-3">
-          <div class="col-md-12" id="fiveDayForecast">
-            <!-- 5 day forecast info populates here -->
-            <!-- <div class="card bg-primary text-white mb-1 d-inline-block" id="dayCard1" style="width 8rem"> -->
-            <!-- <h5 class="city1"></h5> -->
-            <!-- <img clas="img1"> -->
-            <!-- <p class="temp1"></p> -->
-            <!-- <p class="hum1"></p> -->
+          <!-- 5 day info -->
+          <div class="bg-white mt-3">
+            <div class="row" id="fiveDayForecast">
+              <!-- 5 day forecast info populates here -->
+
+              <!-- <div class="card bg-primary text-white mb-1 d-inline-block" id="dayCard1" style="width 8rem"> -->
+              <!-- <h5 class="city1"></h5> -->
+              <!-- <img clas="img1"> -->
+              <!-- <p class="temp1"></p> -->
+              <!-- <p class="hum1"></p> -->
+            </div>
           </div>
+
+
         </div>
-      </div>
 
   </section>
 

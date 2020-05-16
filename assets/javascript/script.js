@@ -1,6 +1,8 @@
-// an input to allow the user to search for the city
-
+// an input to allow the user to search for the city (local storage)
 // grab the users input and store it in a variable (userSearch)
+
+
+// API key for open weather map
 var APIKey = "6b7b386acbe114ac13fa0de66207a370";
 
 $(document).ready(function () {
@@ -13,8 +15,9 @@ $(document).ready(function () {
     forecastWeather(location);
   }
 
+  // inside of that you're going to generate the city, date, tempeature, humidity, wind speed
   function dailyWeather(location) {
-    // current city API
+    // current city API (imperial changes output of temp to farenheit)
     var weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKey}&units=imperial`;
 
     // date using moment.js
@@ -27,22 +30,27 @@ $(document).ready(function () {
       console.log(response.name);
       console.log(currentDate);
 
-      // generate current city and date elements 
-      var currentCity = response.name;
-      var currentCityEl = $("<div>", {
-      }).text(`${currentCity} (${currentDate}) `);
+      // // dynamically generate current weather <div> ** NOT WORKKING **
+
+      // var currentCity = response.name;
+      // var currentCityEl = $("<div>", {
+      // }).text(`${currentCity} (${currentDate}) `);
+
+
 
       // Create current weather icon element 
       var weatherIcon = response.weather[0].icon;
       var srcIcon = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
-      var currentIconEl = $("<img>", {
-        class: "icon bg-primary",
-        src: srcIcon,
-      });
+      /*  var currentIconEl = $("<img>", {
+         class: "icon bg-primary",
+         src: srcIcon,
+       }); */
 
       // Transfer content to HTML
 
-      $(".city").html("<h3>" + response.name + " (" + currentDate + ") " + weatherIcon);
+      $(".city").html("<h3>" + response.name + " (" + currentDate + ") ");
+      var image = $("<img>").prop({ src: srcIcon });
+      $(".city").append(image);
 
       var currentWindSpeed = Math.round(response.wind.speed);
       $(".wind").text("Wind Speed: " + currentWindSpeed + " MPH");
@@ -53,8 +61,9 @@ $(document).ready(function () {
       $(".temp").text("Temperature: " + currentTemp + " F°");
 
 
+      // you're going to call the getUVIndex function to generate the UV Index element
 
-      // uv index API
+      // UV index API
       var uvIndexURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.coord.lat}&lon=${response.coord.lon}&
  exclude=hourly,daily&appid=${APIKey}`;
 
@@ -66,7 +75,7 @@ $(document).ready(function () {
         // Create UV index element
         var currentUV = response.current.uvi;
         var uvIndexOuter = $("<p>").text("UV Index: ");
-        var uvIndexInner = $("<span>").addClass("uv-box").text(currentUV);
+        var uvIndexInner = $("<span>").addClass("uvBox").text(currentUV);
 
         // add index rating in the paragraph element
         uvIndexInner.appendTo(uvIndexOuter);
@@ -89,21 +98,38 @@ $(document).ready(function () {
         }
 
         // Append UV index to #currentCity ID
-        $("#currentCity").append(uvIndexOuter);
+        $(".uvi").html(uvIndexOuter);
       });
     });
   }
+
+
+  // create 5DayForecast function
+  // include the dates, temp and humidity
+  // dynamically generated using JS
+  // generate a card which includes <p>, <img>, <h2>, <icon>
 
   function forecastWeather(location) {
     // 5-day forecast API
     var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${APIKey}&units=imperial`;
 
     $.get(forecastURL).then(function (response) {
+      $("#fiveDayForecast").html("");
       for (let index = 0; index < response.list.length; index++) {
         const element = response.list[index];
         if (element.dt_txt.indexOf("15:00:00") !== -1) {
           console.log(element);
           // populate html for 5 day weather
+          var card = $("<div>").addClass("col-md-2 card")
+          var weatherIcon = element.weather[0].icon;
+          var srcIcon = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
+          var img = $("<img>").attr("src", srcIcon);
+          var temp = $("<p>").text(element.main.temp);
+          var hum = $("<p>").text(element.main.humidity);
+
+          card.append(img, temp, hum);
+          $("#fiveDayForecast").append(card);
+
         }
 
       }
@@ -112,20 +138,24 @@ $(document).ready(function () {
   }
 });
 
-// dynamically generate current weather <div>
-// inside of that you're going to generate the city, date, tempeature, humidity, wind speed
-
-// you're going to call the getUVIndex function to generate the UV Index element
-
-// create 5DayForecast function
-// include the dates, temp and humidity
-// dynamically generated using JS
-// generate a card which includes <p>, <img>, <h2>, <incon>
-
 // store user search in local storage
 // on page load, grab from local storage - grab the most recent search
 // if the users search exists in local storage, don't append a new one to the searches, just grab from local storage
 // in the getCurrentWeather function, check local storage for previous searches
+
+function getJSONfromLocalStorage(key) {
+  returnJSON.parse(localStorage.getItem(key));
+}
+
+function saveJSONtoLocalStorage(key, value) {
+  var currentData = getJSONfromLocalStorage(key);
+  currentData.push(value);
+  var JSONdata = JSON.stringify(currentData);
+  localStorage.setItem(key, JSONdata);
+  return currentData;
+}
+
+
 
 // var location = document.getElementById("location");
 
