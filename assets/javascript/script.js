@@ -15,28 +15,17 @@ $(document).ready(function () {
     forecastWeather(location);
   }
 
-  // inside of that you're going to generate the city, date, tempeature, humidity, wind speed
+  // Generate the city, date, tempeature, humidity, wind speed:
+  // Current weather function
   function dailyWeather(location) {
-    // current city API (imperial changes output of temp to farenheit)
+    // current weather API (imperial changes output of temp to farenheit - tutor helped with this info)
     var weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKey}&units=imperial`;
 
-    // date using moment.js
+    // Date using moment.js
     var currentDate = moment().format("l");
 
-    // create a function that gets the current weather (Current Weather Data Call)
+    // Create a function that gets the current weather (Current Weather Data Call)
     $.get(weatherURL).then(function (response) {
-      // console.log(weatherURL);
-      /*    console.log(response);
-         console.log(response.name);
-         console.log(currentDate); */
-
-      // // dynamically generate current weather <div> ** NOT WORKKING **
-
-      // var currentCity = response.name;
-      // var currentCityEl = $("<div>", {
-      // }).text(`${currentCity} (${currentDate}) `);
-
-
 
       // Create current weather icon element 
       var weatherIcon = response.weather[0].icon;
@@ -44,20 +33,23 @@ $(document).ready(function () {
 
       // Transfer content to HTML
 
+      // Displays name of city searched and current date
       $(".city").html("<h3>" + response.name + " (" + currentDate + ") ");
 
+      // Displays image for current weather
       var image = $("<img>").prop({ src: srcIcon });
       $(".city").append(image);
 
+      // Displays current wind speed
       var currentWindSpeed = Math.round(response.wind.speed);
       $(".wind").text("Wind Speed: " + currentWindSpeed + " MPH");
 
+      //displays current humidity
       $(".humidity").text("Humidity: " + response.main.humidity + "%");
 
+      // Displays current temerature
       var currentTemp = Math.round(response.main.temp);
       $(".temp").text("Temperature: " + currentTemp + " F°");
-
-
 
 
       // UV index API
@@ -71,10 +63,11 @@ $(document).ready(function () {
         var uvIndexOuter = $("<p>").text("UV Index: ");
         var uvIndexInner = $("<span>").addClass("uvBox").text(currentUV);
 
-        // Transfer UV Index to HTML
         uvIndexInner.appendTo(uvIndexOuter);
 
-        // If statement changing color of UV box based on the current UV index
+        // Used weewx github for help with building uv index if statement below
+
+        // If statement changing color of UV box based on the current UV index per https://www.epa.gov/sunsafety/uv-index-scale-0 color codes
         if (currentUV >= 0 && currentUV <= 2.99) {
           uvIndexInner.css("background-color", "green").text(currentUV);
         }
@@ -112,31 +105,35 @@ $(document).ready(function () {
       for (let index = 0; index < response.list.length; index++) {
         const element = response.list[index];
         if (element.dt_txt.indexOf("15:00:00") !== -1) {
-          console.log(element);
+          // console.log(element);
+
           // populate html for 5 day weather
           var header = $("<h5>").text("Five Day Forecast:");
 
+          // add date to card - could only get current date to populate
           var date = moment().format("l");
 
+          // add card div to card for each of 5 days
           var card = $("<div>").addClass("col-md-2 card");
 
+          // add weather <img> to card for each of 5 days
           var weatherIcon = element.weather[0].icon;
           var srcIcon = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
           var img = $("<img>").attr("src", srcIcon);
 
+          // add temp to card for each of 5 days
           var fiveDayTemp = Math.round(element.main.temp);
           var temp = $("<p>").text("Temp: " + fiveDayTemp + " F°");
 
+          // add humidity to cardfor each of 5 days
           var hum = $("<p>").text("Humidity: " + element.main.humidity + "%");
 
+          // populate the 5 cards on page with header outside card
           $(".header").html(header);
           card.append(date, img, temp, hum);
           $("#fiveDayForecast").append(card);
-
         }
-
       }
-
     });
   }
 });
@@ -146,28 +143,3 @@ $(document).ready(function () {
 // if the users search exists in local storage, don't append a new one to the searches, just grab from local storage
 // in the getCurrentWeather function, check local storage for previous searches
 
-function getJSONfromLocalStorage(key) {
-  returnJSON.parse(localStorage.getItem(key));
-}
-
-function saveJSONtoLocalStorage(key, value) {
-  var currentData = getJSONfromLocalStorage(key);
-  currentData.push(value);
-  var JSONdata = JSON.stringify(currentData);
-  localStorage.setItem(key, JSONdata);
-  return currentData;
-}
-
-
-
-// var location = document.getElementById("location");
-
-// function(lat, lon) {
-//   var APIKey = "6b7b386acbe114ac13fa0de66207a370";
-//           $.get('http://api.openweathermap.org/data/2.5/uvi?apikey=${APIKey}', function (res) {
-
-//         })
-// }
-
-// 5 day weather icon
-// .icon + ".png"

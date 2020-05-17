@@ -1,6 +1,6 @@
 # weather-dashboard
 
-![Algorithm schema](./assets/images/null.gif)
+![Algorithm schema](./assets/images/weatherDashboard.gif)
 
 ## Table of contents
 
