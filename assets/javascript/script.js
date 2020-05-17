@@ -41,14 +41,11 @@ $(document).ready(function () {
       // Create current weather icon element 
       var weatherIcon = response.weather[0].icon;
       var srcIcon = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
-      /*  var currentIconEl = $("<img>", {
-         class: "icon bg-primary",
-         src: srcIcon,
-       }); */
 
       // Transfer content to HTML
 
       $(".city").html("<h3>" + response.name + " (" + currentDate + ") ");
+
       var image = $("<img>").prop({ src: srcIcon });
       $(".city").append(image);
 
@@ -61,26 +58,23 @@ $(document).ready(function () {
       $(".temp").text("Temperature: " + currentTemp + " F°");
 
 
-      // you're going to call the getUVIndex function to generate the UV Index element
+
 
       // UV index API
       var uvIndexURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.coord.lat}&lon=${response.coord.lon}&
  exclude=hourly,daily&appid=${APIKey}`;
 
       $.get(uvIndexURL).then(function (response) {
-        // Transfer uv to HTML
-        /* var currentUV = Math.round(response.current.uvi);
-        $(".uvi").text("UV Index: " + currentUV + uvIndexOuter); */
 
         // Create UV index element
         var currentUV = response.current.uvi;
         var uvIndexOuter = $("<p>").text("UV Index: ");
         var uvIndexInner = $("<span>").addClass("uvBox").text(currentUV);
 
-        // add index rating in the paragraph element
+        // Transfer UV Index to HTML
         uvIndexInner.appendTo(uvIndexOuter);
 
-        // If statement changing color of UV box based on the current uv index
+        // If statement changing color of UV box based on the current UV index
         if (currentUV >= 0 && currentUV <= 2.99) {
           uvIndexInner.css("background-color", "green").text(currentUV);
         }
@@ -120,19 +114,23 @@ $(document).ready(function () {
         if (element.dt_txt.indexOf("15:00:00") !== -1) {
           console.log(element);
           // populate html for 5 day weather
+          var header = $("<h5>").text("Five Day Forecast:");
+
+          var date = moment().format("l");
+
           var card = $("<div>").addClass("col-md-2 card");
 
           var weatherIcon = element.weather[0].icon;
           var srcIcon = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
           var img = $("<img>").attr("src", srcIcon);
 
-
           var fiveDayTemp = Math.round(element.main.temp);
-
           var temp = $("<p>").text("Temp: " + fiveDayTemp + " F°");
+
           var hum = $("<p>").text("Humidity: " + element.main.humidity + "%");
 
-          card.append(img, temp, hum);
+          $(".header").html(header);
+          card.append(date, img, temp, hum);
           $("#fiveDayForecast").append(card);
 
         }

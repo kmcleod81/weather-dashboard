@@ -29,3 +29,31 @@
 .icon {
   border-radius: 5px;
 }
+
+#currentCity {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: #e6e6e6 solid 1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* day car */
+
+.card {
+  border: none;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: #007bff;
+  color: white;
+}
+
+#fiveDayForecast img {
+  height: 50px;
+  width: 40%;
+}
+
+#fiveDayForecast img {
+  height: 50px;
+  width: 40%;
+}
