@@ -4,7 +4,7 @@
 var localStorage = JSON.parse(localStorage.getItem('location')) || [];
 
 // API key for open weather map
-var APIKey = '6b7b386acbe114ac13fa0de66207a370';
+var APIKey = 'de57364ca9528021ed2b7c4baca6819c';
 
 $(document).ready(function () {
   $('#citySearch').on('click', searchWeather);
@@ -19,7 +19,7 @@ $(document).ready(function () {
   // Current weather function
   function dailyWeather(location) {
     // current weather API (imperial changes output of temp to farenheit - tutor helped with this info)
-    var weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKey}&units=imperial`;
+    var weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKey}`;
 
     // Date using moment.js
     var currentDate = moment().format('l');
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
   function forecastWeather(location) {
     // 5-day forecast API
-    var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${APIKey}&units=imperial`;
+    var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${APIKey}`;
 
     $.get(forecastURL).then(function (response) {
       $('#fiveDayForecast').html('');
